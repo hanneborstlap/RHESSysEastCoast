@@ -499,6 +499,8 @@ void		patch_daily_F(
 	PAR_diffuse_exposed = 0.0;
 	snow_melt_covered = 0.0;
 	snow_melt_exposed = 0.0;
+
+	patch[0].irrigation_sat = 0.0; 
 	
 	patch[0].exfiltration_unsat_zone = 0.0;
 	patch[0].exfiltration_sat_zone = 0.0;
@@ -705,6 +707,8 @@ void		patch_daily_F(
 				
 			// perform water transfer
 			patch[0].detention_store += patch[0].innundation_list[d].drainIN_irrigation[i].transfer_flux_sub;
+			// Added test variable for patch output; Apr. 26, Hanne Borstlap
+			patch[0].irrigation_sat = patch[0].innundation_list[d].drainIN_irrigation[i].transfer_flux_sub; 
 
 			// Perform NUTRIENTS transfer
 			//     --> Calculate the % of sat water being transfered to this patch
