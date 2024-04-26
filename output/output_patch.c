@@ -172,7 +172,7 @@ void	output_patch(
                     top30cm_potential_sat * 1000.0,
                     top60cm_storage * 1000.0,
                     top60cm_potential_sat * 1000.0,
-		patch[0].irrigation_sat, 
+		patch[0].irrigation_sat
                     );
 
 	if (check <= 0) {
