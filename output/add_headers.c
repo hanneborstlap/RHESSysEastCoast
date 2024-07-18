@@ -490,7 +490,7 @@ void add_headers(struct world_output_file_object *world_output_files,
                         "top60cm_storage",
                         "top60cm_potential_sat",
 			"irrigation_sat", 
-			"irrigation_demand_PET",
+			"irrigation_demand",
 			"available_soil_water"
 						); 
                         // patch daily
