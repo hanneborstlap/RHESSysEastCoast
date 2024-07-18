@@ -1668,6 +1668,8 @@ struct patch_object
         struct  zone_object             *zone; /* parent zone *///<<------------------- not set
         double  grassIrrigation_m;
 	double irrigation_sat;
+	double available_soilwater; 
+	double PET; 
         double  septicReleaseQ_m;
         double  sewerdrained; //<------- Spet 28 tracking how much is subsurface sewer drain
             double  sewerdrained_NO3;
