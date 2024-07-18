@@ -1669,7 +1669,7 @@ struct patch_object
         double  grassIrrigation_m;
 	double irrigation_sat;
 	double available_soilwater; 
-	double PET; 
+	double irr_demand; 
         double  septicReleaseQ_m;
         double  sewerdrained; //<------- Spet 28 tracking how much is subsurface sewer drain
             double  sewerdrained_NO3;
