@@ -504,7 +504,7 @@ void		patch_daily_F(
 	// is coming from and where it is going. HB, July 2024 
 
 	patch[0].irrigation_sat = 0.0; 
-	patch[0].PET = 0.0; 
+	patch[0].irr_demand = 0.0; 
 	patch[0].available_soilwater = 0.0; 
 	
 	patch[0].exfiltration_unsat_zone = 0.0;
@@ -555,7 +555,7 @@ void		patch_daily_F(
                 grassET += patch[0].canopy_strata[j][0].transpiration_sat_zone + patch[0].canopy_strata[j][0].transpiration_unsat_zone;
                 grassPET += patch[0].canopy_strata[j][0].PET;
 
-		patch[0].PET = grassPET; 
+		patch[0].irr_demand = (1-grassET/grassPET); 
 			
                 if( grassPET>0 ){
                       // 4mm/day/m2 irrigation -> 0.004 m/day/m2 (max rate)
