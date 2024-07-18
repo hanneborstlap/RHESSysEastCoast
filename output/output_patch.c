@@ -173,7 +173,7 @@ void	output_patch(
                     top60cm_storage * 1000.0,
                     top60cm_potential_sat * 1000.0,
 			patch[0].irrigation_sat,
-			patch[0].PET = 0.0, 
+			patch[0].irr_demand = 0.0, 
 			patch[0].available_soilwater = 0.0
                     );
 
