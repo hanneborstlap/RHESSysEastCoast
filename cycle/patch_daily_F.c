@@ -555,7 +555,7 @@ void		patch_daily_F(
                 grassET += patch[0].canopy_strata[j][0].transpiration_sat_zone + patch[0].canopy_strata[j][0].transpiration_unsat_zone;
                 grassPET += patch[0].canopy_strata[j][0].PET;
 
-		patch[0].grassPET = grassPET; 
+		patch[0].PET = grassPET; 
 			
                 if( grassPET>0 ){
                       // 4mm/day/m2 irrigation -> 0.004 m/day/m2 (max rate)
