@@ -500,7 +500,12 @@ void		patch_daily_F(
 	snow_melt_covered = 0.0;
 	snow_melt_exposed = 0.0;
 
+	// variables added to look more closely at what is driving irrigation, where it 
+	// is coming from and where it is going. HB, July 2024 
+
 	patch[0].irrigation_sat = 0.0; 
+	patch[0].PET = 0.0; 
+	patch[0].available_soilwater = 0.0; 
 	
 	patch[0].exfiltration_unsat_zone = 0.0;
 	patch[0].exfiltration_sat_zone = 0.0;
@@ -549,7 +554,9 @@ void		patch_daily_F(
                 grassPET = grassET;
                 grassET += patch[0].canopy_strata[j][0].transpiration_sat_zone + patch[0].canopy_strata[j][0].transpiration_unsat_zone;
                 grassPET += patch[0].canopy_strata[j][0].PET;
-                
+
+		patch[0].grassPET = grassPET; 
+			
                 if( grassPET>0 ){
                       // 4mm/day/m2 irrigation -> 0.004 m/day/m2 (max rate)
                       // patch[0].landuse_defaults[0][0].irrigation be the daily max. irrigation rate
@@ -669,6 +676,8 @@ void		patch_daily_F(
 			//  Use soil_water_cap for now.....
 			patch[0].innundation_list[d].drainIN_irrigation[i].patch[0].available_soil_water = patch[0].innundation_list[d].drainIN_irrigation[i].patch[0].soil_defaults[0][0].soil_water_cap - patch[0].innundation_list[d].drainIN_irrigation[i].patch[0].sat_deficit;
 
+			patch[0].available_soilwater = patch[0].innundation_list[d].drainIN_irrigation[i].patch[0].available_soil_water;
+
 			irrigation_sub_drain_demand = min(irrigation_sub_drain_demand, patch[0].innundation_list[d].drainIN_irrigation[i].patch[0].available_soil_water);
 
 			patch[0].innundation_list[d].drainIN_irrigation[i].patch[0].sat_deficit += irrigation_sub_drain_demand; // extraction completed
@@ -707,6 +716,7 @@ void		patch_daily_F(
 				
 			// perform water transfer
 			patch[0].detention_store += patch[0].innundation_list[d].drainIN_irrigation[i].transfer_flux_sub;
+		
 			// Added test variable for patch output; Apr. 26, Hanne Borstlap
 			patch[0].irrigation_sat = patch[0].innundation_list[d].drainIN_irrigation[i].transfer_flux_sub; 
 
