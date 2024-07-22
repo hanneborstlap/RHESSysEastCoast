@@ -555,13 +555,14 @@ void		patch_daily_F(
                 grassET += patch[0].canopy_strata[j][0].transpiration_sat_zone + patch[0].canopy_strata[j][0].transpiration_unsat_zone;
                 grassPET += patch[0].canopy_strata[j][0].PET;
 
+		if(zone[0].rain == 0){
 		patch[0].irr_demand = (1-grassET/grassPET); 
+		
+		// 4mm/day/m2 irrigation -> 0.004 m/day/m2 (max rate)
+                // patch[0].landuse_defaults[0][0].irrigation be the daily max. irrigation rate
+                patch[0].grassIrrigation_m += patch[0].landuse_defaults[0][0].irrigation * patch[0].canopy_strata[j][0].cover_fraction;
 			
-                if( grassPET>0 ){
-                      // 4mm/day/m2 irrigation -> 0.004 m/day/m2 (max rate)
-                      // patch[0].landuse_defaults[0][0].irrigation be the daily max. irrigation rate
-                    patch[0].grassIrrigation_m += (1-grassET/grassPET)*patch[0].landuse_defaults[0][0].irrigation * patch[0].canopy_strata[j][0].cover_fraction;
-                }//if
+		}
             }// if
         }// for loop j
         
